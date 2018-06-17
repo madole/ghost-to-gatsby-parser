@@ -11,7 +11,7 @@ function getTemplate(post) {
     const template = `---
 title: "${title}"
 date: "${new Date(published_at).toISOString()}"
-path: "/${slug}/"
+slug: "/${slug}/"
 ---
 ${markdown}
     `;
