@@ -6,7 +6,7 @@ const blog = JSON.parse(data);
 // uncomment if you need to make the directory
 // fs.mkdirSync('./blog-posts')
 
-function getTemplate(post) {
+function parseBlogPost(post) {
     const { published_at, slug, markdown, title } = post;
     const template = `---
 title: "${title}"
@@ -17,7 +17,6 @@ ${markdown}
     `;
     fs.mkdirSync(`./blog-posts/${slug}`);
     fs.writeFileSync(`./blog-posts/${slug}/index.md`, template, "utf8");
-    return template;
 }
 
-blog.db[0].data.posts.map(post => getTemplate(post));
+blog.db[0].data.posts.forEach(parseBlogPost);
