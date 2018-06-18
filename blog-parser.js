@@ -15,8 +15,15 @@ slug: "/${slug}/"
 ---
 ${markdown}
     `;
-    fs.mkdirSync(`./blog-posts/${slug}`);
-    fs.writeFileSync(`./blog-posts/${slug}/index.md`, template, "utf8");
+
+    const publishedAt = new Date(published_at);
+    const day = publishedAt.getDate();
+    const month = publishedAt.getMonth();
+    const year = publishedAt.getYear();
+    const folderName = `${year}-${month}-${day}-${slug}`;
+
+    fs.mkdirSync(`./blog-posts/${folderName}`);
+    fs.writeFileSync(`./blog-posts/${folderName}/index.md`, template, "utf8");
 }
 
 blog.db[0].data.posts.forEach(parseBlogPost);
