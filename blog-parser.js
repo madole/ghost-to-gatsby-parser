@@ -18,8 +18,8 @@ ${markdown}
 
     const publishedAt = new Date(published_at);
     const day = publishedAt.getDate();
-    const month = publishedAt.getMonth();
-    const year = publishedAt.getYear();
+    const month = publishedAt.getMonth() + 1; // months go from 0 (jan) to 11 (dec) so pad by 1
+    const year = publishedAt.getFullYear();
     const folderName = `${year}-${month}-${day}-${slug}`;
 
     fs.mkdirSync(`./blog-posts/${folderName}`);
